@@ -762,6 +762,22 @@ Public Class CPU8086Class
       Return True
    End Function
 
+   'This procedure executes any pending hardware interrupts.
+   Public Sub ExecuteHardwareInterrupts()
+      SyncLock SYNCHRONIZER
+         Dim Vector As Integer? = PIC.GetInterruptVector()
+
+         If Vector IsNot Nothing Then
+            ExecuteInterrupt(OpcodesE.INT, Vector)
+         End If
+
+         If DoSystemTimerTick AndAlso CBool(Registers(FlagRegistersE.IF)) Then
+            ExecuteInterrupt(OpcodesE.INT, SYSTEM_TIMER_TICK)
+            DoSystemTimerTick = False
+         End If
+      End SyncLock
+   End Sub
+
    'This procedure executes the specified interrupt call.
    Public Sub ExecuteInterrupt(Opcode As OpcodesE, Optional Vector As Integer? = Nothing)
       Dim Address As New Integer
@@ -1190,35 +1206,35 @@ Public Class CPU8086Class
             Select Case Opcode
                Case OpcodesE.DAA
                   If ((AL And &HF%) > &H9%) OrElse CBool(Registers(FlagRegistersE.AF)) Then
-                     AL += &H6%
+                     AL = (AL + &H6%) And &HFF%
                      Registers(FlagRegistersE.AF, NewValue:=True)
                   Else
                      Registers(FlagRegistersE.AF, NewValue:=False)
                   End If
 
                   If (AL > &H9F%) OrElse CBool(Registers(FlagRegistersE.CF)) Then
-                     AL += &H60%
+                     AL = (AL + &H60%) And &HFF%
                      Registers(FlagRegistersE.CF, NewValue:=True)
                   Else
                      Registers(FlagRegistersE.CF, NewValue:=False)
                   End If
                Case OpcodesE.DAS
                   If ((AL And &HF%) > &H9%) OrElse CBool(Registers(FlagRegistersE.AF)) Then
-                     AL -= &H6%
+                     AL = (AL - &H6%) And &HFF%
                      Registers(FlagRegistersE.AF, NewValue:=True)
                   Else
                      Registers(FlagRegistersE.AF, NewValue:=False)
                   End If
 
                   If (AL > &H9F%) OrElse CBool(Registers(FlagRegistersE.CF)) Then
-                     AL -= &H60%
+                     AL = (AL - &H60%) And &HFF%
                      Registers(FlagRegistersE.CF, NewValue:=True)
                   Else
                      Registers(FlagRegistersE.CF, NewValue:=False)
                   End If
             End Select
 
-            AdjustFlags(AL)
+            AdjustFlags(,, NewValue:=AL,,, PreserveCarryFlag:=True)
 
             Registers(SubRegisters8BitE.AL, NewValue:=AL And &HFF%)
          Case OpcodesE.DEC_AX To OpcodesE.DEC_DI, OpcodesE.INC_AX To OpcodesE.INC_DI
