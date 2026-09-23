@@ -9,3 +9,14 @@ D:\Other\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\8086 Emula
 D:\Other\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\8086 Emulator.vbproj.CoreCompileInputs.cache
 D:\Other\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\8086 Emulator.exe
 D:\Other\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\8086 Emulator.pdb
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\bin\Debug\8086 Emulator.exe.config
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\bin\Debug\8086 Emulator.exe
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\bin\Debug\8086 Emulator.pdb
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\8086 Emulator.vbproj.AssemblyReference.cache
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\Emulator8086Program.InterfaceWindow.resources
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\Emulator8086Program.Resources.resources
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\Emulator8086Program.ScreenWindow.resources
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\8086 Emulator.vbproj.GenerateResource.cache
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\8086 Emulator.vbproj.CoreCompileInputs.cache
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\8086 Emulator.exe
+C:\Users\peter\Downloads\8086-Emulator-Modified-main\8086 Emulator.modified\obj\Debug\8086 Emulator.pdb
