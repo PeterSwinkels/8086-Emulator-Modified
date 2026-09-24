@@ -6,7 +6,6 @@ Option Strict On
 
 Imports System
 Imports System.Convert
-Imports System.Environment
 Imports System.IO
 
 'This module contains the default I/O handler.
@@ -88,8 +87,13 @@ Public Module IOHandlerModule
    'This procedure attempts to write the specified I/O port and returns whether or not it succeeded.
    Public Function WriteIOPort(Port As Integer, Value As Integer) As Boolean
       Try
-         Dim Values() As Byte = File.ReadAllBytes(sIO_FILE)
+         Dim Values() As Byte = {}
 
+         If File.Exists(sIO_FILE) Then
+            Values = File.ReadAllBytes(sIO_FILE)
+         End If
+
+         ReDim Preserve Values(&H0% To &HFFFF%)
          Values(Port) = ToByte(Value)
 
          File.WriteAllBytes(sIO_FILE, Values)
